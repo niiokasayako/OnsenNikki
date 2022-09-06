@@ -6,11 +6,93 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
-    <%= yield %>
+    <header class="border border-dark bg-white text-black">
+      <nav class="navbar navbar-expand-md navbar-light">
+
+        <div class = "container">
+          <div class = "logo">
+            <a class="navbar-brand p-1" href= "/public">♨温泉日記</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+           <!--会員がログインした場合-->
+              <% if user_signed_in? %>
+                <li class = "ml-md-4">
+                  <%= link_to  public_users_my_page_path, class: 'btn btn-outline-secondary text-black' do %>
+                  マイ日記一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to public_onsens_path, class: 'btn btn-outline-secondary text-black' do %>
+                  温泉一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary text-black' do %>
+                  ログアウト
+                  <% end %>
+                </li>
+                 <!--管理者がログインした場合-->
+                <% elsif admin_signed_in? %>
+                <li class = "ml-md-4">
+                  <%= link_to admin_path, class: 'btn btn-outline-secondary' do %>
+                  温泉一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to admin_users_path, class: 'btn btn-outline-secondary' do %>
+                  会員一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to admin_informations_path, class: 'btn btn-outline-secondary text-black' do %>
+                  施設情報一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary text-black' do %>
+                  ログアウト
+                  <% end %>
+                </li>
+                <!--ログアウトした場合-->
+                <% else %>
+                <li class = "ml-md-4">
+                  <%= link_to public_onsens_path, class: 'btn btn-outline-secondary ms-5 text-black' do %>
+                  温泉一覧
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to new_user_registration_path, class: 'btn btn-outline-secondary text-black' do %>
+                  新規登録
+                  <% end %>
+                </li>
+                <li class = "ml-md-4">
+                  <%= link_to new_user_session_path, class: 'btn btn-outline-secondary text-black' do %>
+                  ログイン
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class = "main mb-auto">
+      <%=yield %>
+    </main>
+  
+    <footer class="border border-dark bg-white text-black pt-5 pb-4 ">
+      <div class="container mt-12">
+      </div>
+    </footer>
   </body>
 </html>
