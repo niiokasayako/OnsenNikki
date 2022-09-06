@@ -1,2 +1,42 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">温泉一覧</h4>
+
+    <div class = "col-md-7 text-right">
+      <%= link_to new_admin_onsen_path do %>
+        <i class="fa-solid fa-circle-plus fa-2x my-4 pt-3"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <table class= "col-md-10 table border-bottom">
+      <thead class = "table-active">
+        <tr>
+          <th>施設名</th>
+          <th>住所</th>
+          <th>営業時間</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @onsens.each do |onsen| %>
+          <tr>
+            <td>
+              <%= link_to admin_onsen_path(onsen.id) do %>
+                <%= onsen.name %>
+              <% end %>
+            </td>
+            <td><%= onsen.address %></td>
+            <td><%= item.opening_hours %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+
+

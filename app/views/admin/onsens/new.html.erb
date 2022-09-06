@@ -1,2 +1,48 @@
-<h1>Admin::Onsens#new</h1>
-<p>Find me in app/views/admin/onsens/new.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "col-md-3 bg-light text-center my-4 ">温泉情報新規登録</h4>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-2"></div>
+     <%= form_with model: @onsen, url: '/admin/onsens', method: :post do |f| %>
+      <table>
+        <tr>
+          <th class = "font-weight-normal pr-5">施設画像</th>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">施設名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">住所</th>
+          <td><%= f.text_field :address %></td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">営業時間</th>
+          <td><%= f.text_field :opening_hours %></td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">料金</th>
+          <td><%= f.text_field :price %></td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">泉質</th>
+          <td><%= f.text_field :spring_quality %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">施設情報</th>
+          <td><%= f.check_box :information_id, options_from_collection_for_select(Information.all, :id, :name) %></td>
+        </tr>
+      </table>
+
+        <div class ="actions ">
+          <p><%= f.submit '新規登録', class:"btn btn-success px-5 m-3 " %></p>
+        </div>
+      <% end %>
+    <div class = "col-md-2"></div>
+  </div>
+
+</div>
