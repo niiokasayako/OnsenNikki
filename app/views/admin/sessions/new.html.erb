@@ -5,7 +5,7 @@
   </div>
 <div class = "row">
   <div class = "col-md-2"></div>
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with model: @admin, url: admin_session_path do |f| %>
           <table>
               <tr>
               <th class = "font-weight-normal pr-5"><%= f.label :email, "メールアドレス" %></th>
@@ -26,5 +26,6 @@
             <% end %>
 </div>
 </div>
+
 
 <%= render "admin/shared/links" %>
