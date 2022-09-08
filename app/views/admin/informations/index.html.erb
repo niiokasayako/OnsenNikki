@@ -15,7 +15,7 @@
           </div>
       <% end %>
       </div>
-  
+
   <div class = "row">
     <div class = "col-md-5">
         <table class ="table border-bottom ">
@@ -25,18 +25,18 @@
             <th></th>
         </tr>
       </thead>
-      
+
       <tbody>
                 <% @informations.each do |information| %>
                     <tr>
                         <td>
-                            <%= information.namae %>
+                            <%= information.name %>
                         </td>
-                        <td>  
+                        <td>
                            <%= link_to edit_admin_information_path(information.id) do %>
                              <button type="button" class="btn btn-success text-md-block">編集する</button>
 　                         <% end %>
-                         </td>         
+                         </td>
                     </tr>
                 <% end %>
         </tbody>

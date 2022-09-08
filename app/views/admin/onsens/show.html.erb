@@ -28,7 +28,11 @@
       </tr>
        <tr>
         <th class = "font-weight-normal pr-5">施設情報</th>
-        <td><%= @onsen.information.name %></td>
+        <td>
+          <% @onsen.informations.each do |information| %>
+            <%= information.name %>
+          <% end %>
+        </td>
       </tr>
        <tr>
         <th class = "font-weight-normal pr-5">泉質</th>
@@ -42,7 +46,7 @@
            <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
   　    <% end %>
 　   </div>
-      
+
       <%= link_to :back do %>
       <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
       <% end %>

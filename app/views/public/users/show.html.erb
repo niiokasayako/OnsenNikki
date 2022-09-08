@@ -1,2 +1,63 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "text-center pt-2 my-4 ">会員情報</h4>
+    <div class = "text-center pt-2 my-4 ">名前 : <%= @user.name %></div>
+    <p class = "text-center pt-2 my-4 ">
+      <%= link_to public_users_information_edit_path(@user)  do %>
+        <button type="button" class="btn btn-success text-md-block">編集する</button>
+      <% end %>
+    </p>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記一覧</h4>
+  </div>
+
+  <% @user.reviews.each do |review| %>
+    <div class ="row d-flex mt-5" >
+      <div class = "w-25">
+
+        <%= link_to public_review_path(review.id)  do %>
+          <div>
+              <%= image_tag review.onsen.get_image(100,70) %>
+          </div>
+          <table>
+            <tr>
+              <th>施設名</th>
+              <td><%= review.onsen.name %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= review.onsen.address %></td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td><%= review.onsen.opening_hours %></td>
+            </tr>
+            <tr>
+              <th>星評価</th>
+              <td>  
+                <span id="star-rate-<%= review.id %>"></span>
+                <script>
+                  $('#star-rate-<%= review.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true, 
+                    score: <%= review.rate %>,   
+                  });
+                </script>
+                <%= review.rate %>
+              </td>
+            </tr>
+          </table>
+      　</div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

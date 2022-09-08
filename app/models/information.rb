@@ -1,3 +1,3 @@
 class Information < ApplicationRecord
-  has_many :onsens, dependent: :destroy
+  has_many :onsen_informations, dependent: :destroy
 end

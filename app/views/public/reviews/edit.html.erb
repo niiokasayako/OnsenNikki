@@ -1,2 +1,41 @@
-<h1>Public::Reviews#edit</h1>
-<p>Find me in app/views/public/reviews/edit.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "col-md-3 bg-light text-center my-4 ">日記　編集</h4>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-2"></div>
+     <%= form_with model: @review, url: public_review_path(@review.id), method: :patch do |f| %>
+      <table>
+        <tr>
+          <th class = "font-weight-normal pr-5">レビュー</th>
+          <td><%= f.text_area :review %></td>
+        </tr>
+      </table>
+
+      <div class="field" id="star">
+        <%= f.label :rate, "星評価：" %>
+        <%= f.hidden_field :rate, id: :review_star %>
+        <script>
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'review[rate]',
+            half: true,
+          });
+        </script>
+      </div>
+
+        <div class ="actions ">
+          <p><%= f.submit '変更を保存する', class:"btn btn-success px-5 m-3 " %></p>
+        </div>
+      <% end %>
+      
+      
+    <div class = "col-md-2"></div>
+  </div>
+
+</div>

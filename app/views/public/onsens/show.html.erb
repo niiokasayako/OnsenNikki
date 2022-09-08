@@ -1,2 +1,77 @@
-<h1>Public::Onsens#show</h1>
-<p>Find me in app/views/public/onsens/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
+  </div>
+
+  <div class "row" >
+    <div class="col-md-2">
+        <%= image_tag @onsen.get_image(100,70) %>
+    </div>
+
+    <table class="col-md-7">
+      <tr>
+        <th class = "font-weight-normal pr-5">施設名</th>
+        <td><%= @onsen.name %></td>
+      </tr>
+      <tr>
+        <th class = "font-weight-normal align-top pr-5">住所</th>
+        <td><%= @onsen.address %></td>
+      </tr>
+      <tr>
+        <th class = "font-weight-normal pr-5">営業時間</th>
+        <td><%= @onsen.opening_hours %></td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">料金</th>
+        <td><%= @onsen.price %></td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">施設情報</th>
+        <td>
+          <% @onsen.informations.each do |information| %>
+            <%= information.name %>
+          <% end %>
+        </td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">泉質</th>
+        <td><%= @onsen.spring_quality %></td>
+      </tr>
+
+    </table>
+
+      <div class = "col-md-5 text-md-block text-center">
+        <% if user_signed_in? %>
+        <%= link_to new_public_review_path do %>
+           <button type="button" class="btn btn-success text-md-block px-4 m-3">投稿する</button>
+  　    <% end %>
+  　    <% end %>
+　   </div>
+
+      <%= link_to public_onsens_path do %>
+      <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
+      <% end %>
+
+  </div>
+</div>
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記投稿一覧</h4>
+  </div>
+
+ <div class = "row d-flex mt-2">
+        <% @onsen.reviews.each do |review| %>
+            <div class = "col-md-3">
+                <p><%= link_to public_review_path(review.id) do %>
+                        <%= review.created_at.strftime('%Y/%m/%d') %><br>
+                        <%= review.review.truncate(50) %>
+                    <% end %>
+                </p>
+            </div>
+            <% end %>
+    </div>
+
+</div>

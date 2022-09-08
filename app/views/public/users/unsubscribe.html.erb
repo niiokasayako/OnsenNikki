@@ -1,2 +1,24 @@
-<h1>Public::Users#unsubscribe</h1>
-<p>Find me in app/views/public/users/unsubscribe.html.erb</p>
+<div class = "container">
+  <div class = "row-12 text-md-block text-center m-4">
+    <h5 class ="font-weight-bold">本当に退会しますか？</h5>
+  </div>
+
+
+ 
+  <div class = "row-12 text-md-block text-center">
+    <p>退会すると、会員登録情報や<br/>
+      これまでの日記が閲覧できなくなります。<br/>
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+  </div>
+  
+  <div class = "row-12 text-md-block text-center m-4">
+    <%= link_to public_users_information_edit_path(@user), class: 'btn btn-primary align-middle px-3' do %>
+      退会しない
+    <% end %>
+    
+    <%= link_to public_users_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか？" do %>
+        <button type="button" class="btn btn-danger px-4">退会する</button>
+      <% end %>
+  </div>
+</div>

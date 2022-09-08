@@ -1,2 +1,77 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">日記</h4>
+
+  </div>
+    <div class = "row">
+    <div class = "col-md-1"></div>
+      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
+  </div>
+    <div>
+        <%= image_tag @review.onsen.get_image(100,70) %>
+    </div>
+
+    <table class="col-md-7">
+      <tr>
+        <th class = "font-weight-normal pr-5">施設名</th>
+        <td><%= @reviw.onsen.name %></td>
+      </tr>
+      <tr>
+        <th class = "font-weight-normal align-top pr-5">住所</th>
+        <td><%= @review.onsen.address %></td>
+      </tr>
+      <tr>
+        <th class = "font-weight-normal pr-5">営業時間</th>
+        <td><%= @review.onsen.opening_hours %></td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">料金</th>
+        <td><%= @review.onsen.price %></td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">施設情報</th>
+        <td>
+          <% @review.onsen.informations.each do |information| %>
+            <%= information.name %>
+          <% end %>
+        </td>
+      </tr>
+       <tr>
+        <th class = "font-weight-normal pr-5">泉質</th>
+        <td><%= @review.onsen.spring_quality %></td>
+      </tr>
+     </table>
+  <div class = "col-md-4">
+    <table>
+        <tr>
+          <th class = "font-weight-normal pr-5">日付</th>
+          <td><%= @review.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">レビュー</th>
+          <td><%= @review.review %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">星評価</th>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+　   
+
+      <%= link_to public_users_my_page_path do %>
+      <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
+      <% end %>
+      
+      <%= link_to edit_public_review_path(@review.id) do %>
+      <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
+      <% end %>
+      
+      <%= link_to public_review_path(@review.id), method: :delete do %>
+        <button type="button" class="btn btn-danger">削除する</button>
+      <% end %>
+      
+
+  </div>
+</div>

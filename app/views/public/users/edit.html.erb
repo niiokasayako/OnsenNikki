@@ -1,2 +1,36 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "bg-light text-center w-25 my-4 ">会員情報編集</h4>
+  </div>
+
+  <div class = "row">
+    <%= form_with model: @user, url: public_users_information_path do |f| %>
+
+      <table>
+        <tr>
+          <th class = "font-weight-normal pr-5">お名前</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">メールアドレス</th>
+          <td><%= f.text_field :email %></td>
+        </tr>
+      </table>
+  </div>
+  <div class = "row mt-4">
+    <div class = "col-md-2"></div>
+    <div class = "col-md-3">
+      <a><%= f.submit '編集内容を保存', class:"btn btn-success" %></a>
+    </div>
+  <% end %>
+    <div class = "col-md-2"></div>
+    <div class = "col-md-3">
+      <%= link_to public_users_unsubscribe_path, class: 'btn btn-danger' do %>
+        退会する
+      <% end %>
+    </div>
+  </div>
+</div>
+    
+
