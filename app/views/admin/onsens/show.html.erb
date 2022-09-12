@@ -63,7 +63,7 @@
  <div class = "row d-flex mt-2">
         <% @onsen.reviews.each do |review| %>
             <div class = "col-md-3">
-                <p><%= link_to public_review_path(review.id) do %>
+                <p><%= link_to admin_onsen_reviews_path do %>
                         <%= review.created_at.strftime('%Y/%m/%d') %><br>
                         <%= review.review.truncate(50) %>
                     <% end %>

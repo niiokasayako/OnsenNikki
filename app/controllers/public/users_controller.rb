@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(current_user.id)
-    @users = User.all
+    @reviews = @user.reviews
   end
 
   def edit
@@ -26,9 +26,9 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted: true)
     sign_out_and_redirect(current_user)
   end
-  
+
   def user_params
     params.require(:user).permit(:email, :name)
   end
-  
+
 end

@@ -15,7 +15,7 @@
     <table class="col-md-7">
       <tr>
         <th class = "font-weight-normal pr-5">施設名</th>
-        <td><%= @reviw.onsen.name %></td>
+        <td><%= @review.onsen.name %></td>
       </tr>
       <tr>
         <th class = "font-weight-normal align-top pr-5">住所</th>
@@ -54,24 +54,55 @@
         </tr>
         <tr>
           <th class = "font-weight-normal pr-5">星評価</th>
-          <td></td>
+          <td>
+            <span id="star-rate-<%= @review.id %>"></span>
+                <script>
+                  $('#star-rate-<%= @review.id %>').raty({
+                    size: 36,
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    half: true,
+                    readOnly: true,
+                    score: <%= @review.rate %>,
+                  });
+                </script>
+                <%= @review.rate %>
+          </td>
         </tr>
       </table>
   </div>
-　   
+
 
       <%= link_to public_users_my_page_path do %>
       <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
       <% end %>
-      
-      <%= link_to edit_public_review_path(@review.id) do %>
+     <% if @review.user == current_user %>
+      <%= link_to edit_public_onsen_review_path(@review.onsen, @review.id) do %>
       <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
       <% end %>
-      
-      <%= link_to public_review_path(@review.id), method: :delete do %>
+
+      <%= link_to public_onsen_reviews_path, method: :delete do %>
         <button type="button" class="btn btn-danger">削除する</button>
       <% end %>
-      
+      <% end %>
+
+      <div>
+        <p>コメント件数：<%= @review.post_comments.count %></p>
+        <% @review.post_comments.each do |post_comment| %>
+          <p><i class="fas fa-solid fa-user"></i></p>
+          <%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", public_onsen_review_post_comments_path(@review.onsen, @review.id), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@review, @post_comment], url: public_onsen_review_post_comments_path(@review.onsen, @review.id), method: :post do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
 
   </div>
-</div>

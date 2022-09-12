@@ -3,7 +3,7 @@
     <h4 class = "bg-light text-center px-4 my-4 "><%= @review.user.name %>さんの投稿日記編集</h4>
   </div>
 
-  <%= form_with model: @review, url: admin_review_path(@review.id), method: :patch  do |f| %>
+  <%= form_with model: @review, url: admin_onsen_reviews_path, method: :patch  do |f| %>
 　　<!--不適切な投稿が見られた場合、管理者は日記の内容を削除する-->
   <div class = "row">
     <table>

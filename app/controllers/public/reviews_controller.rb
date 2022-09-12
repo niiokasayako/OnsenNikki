@@ -4,14 +4,18 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
-   @review = Review.new
-   @review.user_id = current_user.id
-   @review.save
-   redirect_to public_onsen_path(@onsen.id)
+    @onsen = Onsen.find(params[:onsen_id])
+    @review = Review.new(review_params)
+    @review.rate = params[:review][:rate]
+    @review.onsen_id = @onsen.id
+    @review.user_id = current_user.id
+    @review.save
+   redirect_to public_users_my_page_path
   end
-
+  
   def show
     @review = Review.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -21,7 +25,7 @@ class Public::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to public_review_path(@review)
+    redirect_to public_onsen_reviews_path
   end
 
   def destroy

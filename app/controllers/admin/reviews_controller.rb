@@ -10,7 +10,7 @@ class Admin::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update
-    redirect_to admin_review_path(@review)
+    redirect_to admin_onsen_reviews_path
   end
   
   private

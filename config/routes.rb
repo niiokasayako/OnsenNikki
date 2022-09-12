@@ -14,24 +14,35 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 }
 
 namespace :public do
+    resources :onsens do
+      collection do
+        get 'search'
+      end
+    end
     root to: "homes#top"
     get 'users/show' => "users#show", as: "users/my_page"
     get 'users/edit' => "users#edit", as: "users/information/edit"
     patch 'users/update' => "users#update", as: "users/information"
     get 'users/unsubscribe'
     patch 'users/withdraw'
-    resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy]
-    resources :onsens, only: [:index, :show]
-    resources :post_comments, only: [:create, :destroy]
-    resources :samps, only: [:create, :destroy]
+    
+    resources :onsens, only: [:index, :show] do
+      resource :stamps, only: [:create, :destroy]
+      resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy] do
+        resource :post_comments, only: [:create, :destroy]
+      end
+    end
+
   end
 
   namespace :admin do
     get '/' => "homes#top", as: "/"
-    resources :onsens, only: [:new, :edit, :show, :create, :update]
+    resources :onsens, only: [:new, :edit, :show, :create, :update] do 
+      resource :reviews, only: [:edit, :show, :update]
+    end
     resources :informations, only: [:index, :edit, :create, :update]
     resources :users, only: [:index, :edit, :update]
-    resources :reviews, only: [:edit, :show, :update]
+    
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

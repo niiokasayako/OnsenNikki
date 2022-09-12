@@ -15,11 +15,11 @@
     <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記一覧</h4>
   </div>
 
-  <% @user.reviews.each do |review| %>
+  <% @reviews.each do |review| %>
     <div class ="row d-flex mt-5" >
       <div class = "w-25">
 
-        <%= link_to public_review_path(review.id)  do %>
+        <%= link_to public_onsen_review_path(review.onsen, review.id)  do %>
           <div>
               <%= image_tag review.onsen.get_image(100,70) %>
           </div>
