@@ -34,7 +34,7 @@ class Admin::InformationsController < ApplicationController
     end
   end
   
-  #投稿データのストロングパラメータ
+  #施設情報データのストロングパラメータ
   private
 
   def information_params

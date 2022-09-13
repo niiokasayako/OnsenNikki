@@ -1,53 +1,55 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-md-1"></div>
-      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">日記</h4>
-
+      <h4 class = "bg-light text-center px-4 my-4 mb-5 "><%= @review.user.name %>の日記</h4>
+      <tr>
+          <div class = "col-md-5 bg-light text-center px-4 my-4 mb-5 ">
+          日付：<%= l @review.created_at %>
+        </div>
   </div>
-    <div class = "row">
+
+  <div class = "row">
     <div class = "col-md-1"></div>
       <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
-  </div>
-    <div>
-        <%= image_tag @review.onsen.get_image(100,70) %>
-    </div>
 
-    <table class="col-md-7">
-      <tr>
-        <th class = "font-weight-normal pr-5">施設名</th>
-        <td><%= @review.onsen.name %></td>
-      </tr>
-      <tr>
-        <th class = "font-weight-normal align-top pr-5">住所</th>
-        <td><%= @review.onsen.address %></td>
-      </tr>
-      <tr>
-        <th class = "font-weight-normal pr-5">営業時間</th>
-        <td><%= @review.onsen.opening_hours %></td>
-      </tr>
-       <tr>
-        <th class = "font-weight-normal pr-5">料金</th>
-        <td><%= @review.onsen.price %></td>
-      </tr>
-       <tr>
-        <th class = "font-weight-normal pr-5">施設情報</th>
-        <td>
-          <% @review.onsen.informations.each do |information| %>
-            <%= information.name %>
-          <% end %>
-        </td>
-      </tr>
-       <tr>
-        <th class = "font-weight-normal pr-5">泉質</th>
-        <td><%= @review.onsen.spring_quality %></td>
-      </tr>
-     </table>
-  <div class = "col-md-4">
-    <table>
+    <div class = "col-md-9">
+      <table>
         <tr>
-          <th class = "font-weight-normal pr-5">日付</th>
-          <td><%= @review.created_at.strftime('%Y/%m/%d') %></td>
+          <th class = "font-weight-normal pr-5">施設名</th>
+          <td><%= @review.onsen.name %></td>
         </tr>
+        <tr>
+          <th class = "font-weight-normal align-top pr-5">住所</th>
+          <td><%= @review.onsen.address %></td>
+        </tr>
+        <tr>
+          <th class = "font-weight-normal pr-5">営業時間</th>
+          <td><%= @review.onsen.opening_hours %></td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">料金</th>
+          <td><%= @review.onsen.price %></td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">施設情報</th>
+          <td>
+            <% @review.onsen.informations.each do |information| %>
+              <%= information.name %>
+            <% end %>
+          </td>
+        </tr>
+         <tr>
+          <th class = "font-weight-normal pr-5">泉質</th>
+          <td><%= @review.onsen.spring_quality %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-11">
+      <table>
+
         <tr>
           <th class = "font-weight-normal pr-5">レビュー</th>
           <td><%= @review.review %></td>
@@ -56,36 +58,42 @@
           <th class = "font-weight-normal pr-5">星評価</th>
           <td>
             <span id="star-rate-<%= @review.id %>"></span>
-                <script>
-                  $('#star-rate-<%= @review.id %>').raty({
-                    size: 36,
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    half: true,
-                    readOnly: true,
-                    score: <%= @review.rate %>,
-                  });
-                </script>
-                <%= @review.rate %>
+            <script>
+              $('#star-rate-<%= @review.id %>').raty({
+                size: 36,
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= @review.rate %>,
+              });
+            </script>
+            <%= @review.rate %>
           </td>
         </tr>
       </table>
+    </div>
   </div>
 
+  <div class = "row">
+    <div class = "col-md-11">
+      <%= link_to :back do %>
+        <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
+      <% end %>
+      <% if @review.user == current_user %>
+        <%= link_to edit_public_onsen_review_path(@review.onsen, @review.id) do %>
+          <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
+        <% end %>
+        <%= link_to public_onsen_review_path(@review.onsen, @review.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+          <button type="button" class="btn btn-danger">削除する</button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
-      <%= link_to public_users_my_page_path do %>
-      <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
-      <% end %>
-     <% if @review.user == current_user %>
-      <%= link_to edit_public_onsen_review_path(@review.onsen, @review.id) do %>
-      <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
-      <% end %>
-
-      <%= link_to public_onsen_reviews_path, method: :delete do %>
-        <button type="button" class="btn btn-danger">削除する</button>
-      <% end %>
-      <% end %>
+  <div class = "row">
+    <div class = "col-md-11">
 
       <div>
         <p>コメント件数：<%= @review.post_comments.count %></p>
@@ -94,15 +102,21 @@
           <%= post_comment.user.name %>
           <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
           <% if post_comment.user == current_user %>
-            <%= link_to "削除", public_onsen_review_post_comments_path(@review.onsen, @review.id), method: :delete %>
+            <%= link_to "削除", public_onsen_review_post_comment_path(@review.onsen, @review.id, post_comment.id), method: :delete %>
           <% end %>
         <% end %>
       </div>
+
       <div>
+        <% if user_signed_in? %>
         <%= form_with model: [@review, @post_comment], url: public_onsen_review_post_comments_path(@review.onsen, @review.id), method: :post do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
           <%= f.submit "送信する" %>
         <% end %>
+        <% end %>
       </div>
-
+    </div>
   </div>
+
+</div>
+

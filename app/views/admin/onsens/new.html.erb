@@ -3,15 +3,22 @@
     <div class = "col-md-1"></div>
     <h4 class = "col-md-3 bg-light text-center my-4 ">温泉情報新規登録</h4>
   </div>
+  
+  <% if @onsen.errors.any? %>
+    <ul class="alert alert-anger" role="alert">
+     <h6 class="alert-heading">
+      <%= @onsen.errors.count %>件のエラーが発生しました
+     </h6>
+     <% @onsen.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+    </ul>
+  <% end %>
 
   <div class = "row">
     <div class = "col-md-2"></div>
      <%= form_with model: @onsen, url: '/admin/onsens', method: :post do |f| %>
       <table>
-        <tr>
-          <th class = "font-weight-normal pr-5">施設画像</th>
-          <td><%= f.file_field :image, accept: "image/*" %></td>
-        </tr>
         <tr>
           <th class = "font-weight-normal pr-5">施設名</th>
           <td><%= f.text_field :name %></td>

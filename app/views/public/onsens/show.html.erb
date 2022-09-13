@@ -1,15 +1,29 @@
 <div class = "container">
+  <div class ="row">
+    <% if user_signed_in? %>
+      <% if @onsen.stamped_by?(current_user) %>
+        <p>
+          <%= link_to public_onsen_stamps_path(@onsen.id), method: :delete do %>
+             <button type="button" class="btn btn-warning"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを取り消す</button>
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to public_onsen_stamps_path(@onsen.id), method: :post do %>
+            <button type="button" class="btn btn-outline-warning"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを押す</button>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class = "row">
     <div class = "col-md-1"></div>
       <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
   </div>
 
   <div class "row" >
-    <div class="col-md-2">
-        <%= image_tag @onsen.get_image(100,70) %>
-    </div>
-
-    <table class="col-md-7">
+    <table class="col-md-10">
       <tr>
         <th class = "font-weight-normal pr-5">施設名</th>
         <td><%= @onsen.name %></td>
@@ -62,16 +76,29 @@
     <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記投稿一覧</h4>
   </div>
 
- <div class = "row d-flex mt-2">
-        <% @onsen.reviews.each do |review| %>
-            <div class = "col-md-3">
-                <p><%= link_to public_review_path(review.id) do %>
-                        <%= review.created_at.strftime('%Y/%m/%d') %><br>
-                        <%= review.review.truncate(50) %>
-                    <% end %>
-                </p>
-            </div>
-            <% end %>
-    </div>
+  <div class = "row d-flex mt-2">
+    <% @onsen.reviews.each do |review| %>
+      <div class = "col-md-3">
+        <p>
+          <%= link_to public_onsen_review_path(review.onsen, review.id) do %>
+            <%= review.created_at.strftime('%Y/%m/%d') %><br>
+            <%= review.review.truncate(50) %><br>
+            <span id="star-rate-<%= review.id %>"></span>
+            <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= review.rate %>,
+              });
+            </script>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 
 </div>

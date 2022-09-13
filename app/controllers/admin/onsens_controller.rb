@@ -6,7 +6,7 @@ class Admin::OnsensController < ApplicationController
   def create
     @onsen = Onsen.new(onsen_params)
     if @onsen.save
-      flash[:notice] = "You have created onnsen successfully."
+      flash[:notice] = "温泉情報を登録しました"
       redirect_to admin_onsen_path(@onsen.id)
     else
       render :new
@@ -30,7 +30,7 @@ class Admin::OnsensController < ApplicationController
   private
 
   def onsen_params
-    params.require(:onsen).permit(:name, :image, :address, :opening_hours, :price, :spring_quality, information_ids: [])
+    params.require(:onsen).permit(:name, :address, :opening_hours, :price, :spring_quality, information_ids: [])
   end
 
 end

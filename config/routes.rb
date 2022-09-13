@@ -29,16 +29,15 @@ namespace :public do
     resources :onsens, only: [:index, :show] do
       resource :stamps, only: [:create, :destroy]
       resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy] do
-        resource :post_comments, only: [:create, :destroy]
+        resources :post_comments, only: [:create, :destroy]
       end
     end
-
   end
 
   namespace :admin do
     get '/' => "homes#top", as: "/"
     resources :onsens, only: [:new, :edit, :show, :create, :update] do 
-      resource :reviews, only: [:edit, :show, :update]
+      resources :reviews, only: [:edit, :show, :update]
     end
     resources :informations, only: [:index, :edit, :create, :update]
     resources :users, only: [:index, :edit, :update]

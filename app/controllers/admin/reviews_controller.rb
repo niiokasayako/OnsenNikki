@@ -9,14 +9,15 @@ class Admin::ReviewsController < ApplicationController
   
   def update
     @review = Review.find(params[:id])
-    @review.update
-    redirect_to admin_onsen_reviews_path
+    @review.update(review_params)
+    redirect_to admin_onsen_review_path(@review.onsen, @review.id)
   end
   
   private
 
-  def onsen_params
-    params.require(:onsen).permit(:information_id, :name, :image, :address, :opening_hours, :price, :spring_quality)
+  def review_params
+    params.require(:review).permit(:review, :rate, :user_id, :onsen_id)
   end
 
 end
+  

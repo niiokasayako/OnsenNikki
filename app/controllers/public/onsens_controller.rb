@@ -4,7 +4,7 @@ class Public::OnsensController < ApplicationController
   end
 
   def show
-     @onsen = Onsen.find(params[:id])
+    @onsen = Onsen.find(params[:id])
   end
 
   def search

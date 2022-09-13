@@ -5,11 +5,7 @@
   </div>
 
   <div class "row" >
-    <div class="col-md-2">
-        <%= image_tag @onsen.get_image(100,70) %>
-    </div>
-
-    <table class="col-md-7">
+    <table>
       <tr>
         <th class = "font-weight-normal pr-5">施設名</th>
         <td><%= @onsen.name %></td>
@@ -60,16 +56,29 @@
     <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記投稿一覧</h4>
   </div>
 
- <div class = "row d-flex mt-2">
-        <% @onsen.reviews.each do |review| %>
-            <div class = "col-md-3">
-                <p><%= link_to admin_onsen_reviews_path do %>
-                        <%= review.created_at.strftime('%Y/%m/%d') %><br>
-                        <%= review.review.truncate(50) %>
-                    <% end %>
-                </p>
-            </div>
-            <% end %>
-    </div>
+  <div class = "row d-flex mt-2">
+    <% @onsen.reviews.each do |review| %>
+      <div class = "col-md-3">
+        <p>
+          <%= link_to admin_onsen_review_path(review.onsen,review.id) do %>
+            <%= review.created_at.strftime('%Y/%m/%d') %><br>
+            <%= review.review.truncate(50) %><br>
+            <span id="star-rate-<%= review.id %>"></span>
+            <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= review.rate %>,
+              });
+            </script>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 
 </div>

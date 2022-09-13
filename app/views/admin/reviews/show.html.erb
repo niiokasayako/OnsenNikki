@@ -20,19 +20,32 @@
       </tr>
       <tr>
         <th class = "pr-3">星評価</th>
-        <td><%= @review.star_review %></td>
+        <td>
+          <span id="star-rate-<%= @review.id %>"></span>
+            <script>
+              $('#star-rate-<%= @review.id %>').raty({
+                size: 36,
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= @review.rate %>,
+              });
+            </script>
+            <%= @review.rate %>
+        </td>
       </tr>
     </table>
-    
-        <div class = "col-md-5 text-md-block text-center">
-          <%= link_to edit_admin_onsen_reviews_path do %>
-           <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
-  　       <% end %>
-　      </div>
-　       <%= link_to :back do %>
-          <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
-         <% end %>
+
+      <div class = "col-md-5 text-md-block text-center">
+        <%= link_to edit_admin_onsen_review_path(@review.onsen, @review.id) do %>
+          <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
+        <% end %>
+      </div>
+　    <%= link_to :back do %>
+        <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
+      <% end %>
 
   </div>
-
 </div>

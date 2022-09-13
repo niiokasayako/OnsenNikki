@@ -6,7 +6,6 @@
 
   <div class = "row">
     <%= form_with model: @user, url: public_users_information_path do |f| %>
-
       <table>
         <tr>
           <th class = "font-weight-normal pr-5">お名前</th>
@@ -24,6 +23,7 @@
       <a><%= f.submit '編集内容を保存', class:"btn btn-success" %></a>
     </div>
   <% end %>
+  
     <div class = "col-md-2"></div>
     <div class = "col-md-3">
       <%= link_to public_users_unsubscribe_path, class: 'btn btn-danger' do %>

@@ -25,7 +25,7 @@ class Public::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
-    redirect_to public_onsen_reviews_path
+    redirect_to public_onsen_review_path(@review.id)
   end
 
   def destroy

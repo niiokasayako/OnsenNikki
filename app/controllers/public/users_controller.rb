@@ -11,9 +11,9 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-    redirect_to public_users_my_page_path(@user)
+      redirect_to public_users_my_page_path(@user)
     else
-    render :edit
+      render :edit
     end
   end
 
