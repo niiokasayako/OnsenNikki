@@ -1,18 +1,21 @@
 <div class = "container">
+  <div class = "row my-2">
+    <%= link_to :back do %>
+      <button type="button" class="btn btn-success text-md-block px-2 m-3">＜ 戻る</button>
+      <% end %>
+  </div>
+
   <div class = "row">
     <h4 class = "bg-light text-center px-4 my-4 "><%= @review.user.name %>さんの投稿日記編集</h4>
   </div>
 
   <%= form_with model: [@onsen, @review], url: admin_onsen_review_path(@review.onsen, @review.id), method: :patch  do |f| %>
-　　不適切な投稿が見られた場合、管理者は日記の内容を削除する
     <div class = "row">
-      <table>
-        <tr>
-          <th class = "font-weight-normal pt-3 pr-5">日記の内容</th>
-          <td><%= f.text_area :review %></td>
-        </tr>
-      </table>
+      <div class = "col-md-2"></div>
+     <div>＜日記の内容＞<br>
+     <%= f.text_area :review, class: 'form-control',size: "40x5" %></div>
     </div>
+
     <div class = "row mt-4">
       <div class = "col-md-2"></div>
       <div class = "col-md-3">
@@ -21,7 +24,4 @@
     </div>
   <% end %>
 
-  <%= link_to :back do %>
-    <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
-  <% end %>
 </div>

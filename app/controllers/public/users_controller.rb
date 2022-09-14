@@ -27,6 +27,8 @@ class Public::UsersController < ApplicationController
     sign_out_and_redirect(current_user)
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:email, :name)
   end

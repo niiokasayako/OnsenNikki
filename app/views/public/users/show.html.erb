@@ -5,31 +5,42 @@
     <div class = "text-center pt-2 my-4 ">名前 : <%= @user.name %></div>
     <p class = "text-center pt-2 my-4 ">
       <%= link_to public_users_information_edit_path(@user)  do %>
-        <button type="button" class="btn btn-success text-md-block">編集する</button>
+        <button type="button" class="btn btn-warning text-md-block">編集する</button>
       <% end %>
     </p>
   </div>
 
   <div class = "row">
     <div class = "col-md-1"></div>
-    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記一覧</h4>
+    <h4 class = "text-center w-25 pt-2 my-4 ">日記一覧</h4>
   </div>
 
+ <div class = "row">
+    <div class = "col-md-1"></div>
+    <div class="search_form">
+      <%= form_with url: search_public_onsen_reviews_path(1), local: true, method: :get do |f| %>
+        <%= f.text_field :address, placeholder: "地名検索" %><br>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 
     <div class ="row" >
-      <table class= "col-md-10 table border-bottom">
-      <thead class = "table-active">
+      <table class= "col-md-11 table border-bottom table-hover text-body">
+      <thead class = "table-warning">
         <tr>
-          <th>施設名</th>
-          <th>住所</th>
+          <th>日付</th>
+          <th class ="col-md-3">施設名</th>
+          <th class = "col-md-3">住所</th>
           <th>営業時間</th>
-          <th>星評価</th>
+          <th class = "col-md-3">星評価</th>
         </tr>
       </thead>
 
       <tbody>
   <% @reviews.each do |review| %>
           <tr>
+            <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
             <td><%= link_to public_onsen_review_path(review.onsen, review.id)  do %>
             <%= review.onsen.name %><% end %>
             </td>

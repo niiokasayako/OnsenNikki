@@ -29,56 +29,56 @@
            <!--会員がログインした場合-->
               <% if user_signed_in? %>
                 <li class = "ml-md-4">
-                  <%= link_to  public_users_my_page_path, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to  public_users_my_page_path, class: 'btn btn-outline-warning' do %>
                   マイ日記一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to public_onsens_path, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to public_onsens_path, class: 'btn btn-outline-warning' do %>
                   温泉一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-warning' do %>
                   ログアウト
                   <% end %>
                 </li>
                  <!--管理者がログインした場合-->
                 <% elsif admin_signed_in? %>
                 <li class = "ml-md-4">
-                  <%= link_to admin_path, class: 'btn btn-outline-secondary' do %>
+                  <%= link_to admin_path, class: 'btn btn-outline-warning' do %>
                   温泉一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to admin_users_path, class: 'btn btn-outline-secondary' do %>
+                  <%= link_to admin_users_path, class: 'btn btn-outline-warning' do %>
                   会員一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to admin_informations_path, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to admin_informations_path, class: 'btn btn-outline-warning' do %>
                   施設情報一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'btn btn-outline-warning' do %>
                   ログアウト
                   <% end %>
                 </li>
                 <!--ログアウトした場合-->
                 <% else %>
                 <li class = "ml-md-4">
-                  <%= link_to public_onsens_path, class: 'btn btn-outline-secondary ms-5 text-black' do %>
+                  <%= link_to public_onsens_path, class: 'btn btn-outline-warning ms-5' do %>
                   温泉一覧
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to new_user_registration_path, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to new_user_registration_path, class: 'btn btn-outline-warning' do %>
                   新規登録
                   <% end %>
                 </li>
                 <li class = "ml-md-4">
-                  <%= link_to new_user_session_path, class: 'btn btn-outline-secondary text-black' do %>
+                  <%= link_to new_user_session_path, class: 'btn btn-outline-warning' do %>
                   ログイン
                   <% end %>
                 </li>
@@ -93,8 +93,8 @@
       <%=yield %>
     </main>
 
-    <footer class="border border-dark bg-white text-black pt-5 pb-4 ">
-      <div class="container mt-12">
+    <footer class="border border-dark ">
+      <div class="footer-text">温泉日記
       </div>
     </footer>
   </body>

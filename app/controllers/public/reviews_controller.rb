@@ -12,10 +12,16 @@ class Public::ReviewsController < ApplicationController
     @review.save
    redirect_to public_users_my_page_path
   end
-  
+
   def show
     @review = Review.find(params[:id])
     @post_comment = PostComment.new
+  end
+
+  def search
+    @reviews = current_user.reviews.search(params[:address])
+    @user = current_user
+    render "public/users/show"
   end
 
   def edit

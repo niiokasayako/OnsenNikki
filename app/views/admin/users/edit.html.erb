@@ -8,19 +8,19 @@
   <div class = "row">
     <table>
         <tr>
-          <th class = "font-weight-normal pt-3 pr-5">会員ID</td>
+          <th class = "font-weight-normal pr-5">会員ID</td>
           <td><%= @user.id %></td>
         </tr>
         <tr>
-          <th class = "font-weight-normal pt-3 pr-5">氏名</th>
+          <th class = "font-weight-normal pr-5">氏名</th>
           <td><%= f.text_field :name %></td>
         </tr>
         <tr>
-          <th class = "font-weight-normal pt-3 pr-5">メールアドレス</th>
+          <th class = "font-weight-normal pr-5">メールアドレス</th>
           <td><%= f.text_field :email %></td>
         </tr>
         <tr>
-          <th>会員ステータス</th>
+          <th class = "font-weight-normal pr-5">会員ステータス</th>
           <td><%= f.radio_button :is_deleted, "false" %>
             <%= f.label :is_deleted, "有効" %>
             <%= f.radio_button :is_deleted, "true" %>
@@ -29,7 +29,7 @@
         </tr>
     </table>
   </div>
-  <div class = "row mt-4">
+  <div class = "row mt-4 my-2">
     <div class = "col-md-2"></div>
     <div class = "col-md-3">
       <%= f.submit '変更を保存', class:"btn btn-success" %>

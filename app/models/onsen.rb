@@ -1,5 +1,4 @@
 class Onsen < ApplicationRecord
-  has_one_attached :image
 
   has_many :onsen_informations, dependent: :destroy
   has_many :informations, through: :onsen_informations
