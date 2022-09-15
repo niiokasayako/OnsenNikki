@@ -3,7 +3,7 @@
   <div class = "row">
     <div class = "col-md-1"></div>
       <%= link_to public_onsens_path do %>
-        <button type="button" class="btn btn-outline-warning text-md-block px-4 m-3">＜ 戻る</button>
+        <button type="button" class="btn btn-outline-warning rounded-pill text-md-block px-4 m-3">＜ 戻る</button>
       <% end %>
   </div>
 
@@ -68,7 +68,7 @@
       <div class = "text-center">
         <% if user_signed_in? %>
         <%= link_to new_public_onsen_review_path(@onsen) do %>
-           <button type="button" class="btn btn-warning text-md-block px-4 m-3">日記を書く</button>
+           <button type="button" class="btn btn-warning rounded-pill text-md-block px-4 m-3">日記を書く</button>
   　    <% end %>
   　    <% end %>
 　   </div>
@@ -84,21 +84,22 @@
       <div class = "col-md-3">
         <p>
           <%= link_to public_onsen_review_path(review.onsen, review.id) do %>
-            <%= review.created_at.strftime('%Y/%m/%d') %><br>
-            <%= review.review.truncate(50) %><br>
-            <span id="star-rate-<%= review.id %>"></span>
-            <script>
-              $('#star-rate-<%= review.id %>').raty({
-                size: 36,
-                starOff: "<%= asset_path('star-off.png') %>",
-                starOn: "<%= asset_path('star-on.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                half: true,
-                readOnly: true,
-                score: <%= review.rate %>,
-              });
-            </script>
-          <% end %>
+            <%= review.user.name %>
+          <% end %><br>
+          <%= review.created_at.strftime('%Y/%m/%d') %><br>
+          <%= review.review.truncate(25) %><br>
+          <span id="star-rate-<%= review.id %>"></span>
+          <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              half: true,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+          </script>
         </p>
       </div>
     <% end %>

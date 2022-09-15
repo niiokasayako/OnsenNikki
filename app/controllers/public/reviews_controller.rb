@@ -18,11 +18,7 @@ class Public::ReviewsController < ApplicationController
     @post_comment = PostComment.new
   end
 
-  def search
-    @reviews = current_user.reviews.search(params[:address])
-    @user = current_user
-    render "public/users/show"
-  end
+ 
 
   def edit
     @review = Review.find(params[:id])

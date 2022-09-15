@@ -13,26 +13,24 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
-namespace :public do
+  namespace :public do
 
     root to: "homes#top"
     get 'users/show' => "users#show", as: "users/my_page"
+    get 'users/show/review_search' => "users#review_search", as: "users/my_page/search"
     get 'users/edit' => "users#edit", as: "users/information/edit"
     patch 'users/update' => "users#update", as: "users/information"
     get 'users/unsubscribe'
     patch 'users/withdraw'
+
 
     resources :onsens, only: [:index, :show] do
       collection do
         get 'search'
       end
       resource :stamps, only: [:create, :destroy]
-      resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy] do
-        collection do
-        get 'search'
-      end
-        resources :post_comments, only: [:create, :destroy]
-      end
+      resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy]
+      resources :post_comments, only: [:create, :destroy]
     end
   end
 

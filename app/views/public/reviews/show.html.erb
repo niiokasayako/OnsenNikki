@@ -1,17 +1,29 @@
 <div class = "container">
+
   <div class = "row">
     <div class = "col-md-1"></div>
-      <h4 class = "bg-light text-center px-4 my-4 mb-5 "><%= @review.user.name %>の日記</h4>
-      <tr>
-          <div class = "col-md-5 bg-light text-center px-4 my-4 mb-5 ">
-          日付：<%= l @review.created_at %>
-        </div>
+      <%= link_to :back do %>
+        <button type="button" class="btn btn-outline-warning rounded-pill text-md-block px-4 m-3">＜ 戻る</button>
+      <% end %>
   </div>
 
   <div class = "row">
     <div class = "col-md-1"></div>
-      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
+    <h4 class = "border-bottom w-75 pt-2 my-4 "><%= @review.user.name %>の温泉日記<h4>
+  </div>
 
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h6 class = "my-2">日付：<%= l @review.created_at %></h6>
+  </div>
+
+    <div class = "row">
+    <div class = "col-md-1"></div>
+    <h6 class = "border-bottom w-50 pt-2 my-4 ">基本情報<h6>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
     <div class = "col-md-9">
       <table>
         <tr>
@@ -45,15 +57,23 @@
       </table>
     </div>
   </div>
+      <div class = "row mt-4">
+    <div class = "col-md-1"></div>
+    <h6 class = "border-bottom w-50 pt-2 my-4 ">感想<h6>
+  </div>
 
-  <div class = "row">
+  <div class = "row mt-1">
+    <div class = "col-md-1"></div>
+    <div class = ""><%= @review.review %></div>
+    </div>
+
+   <div class = "row mt-1">
+         <div class = "col-md-1"></div>
     <div class = "col-md-11">
       <table>
-
         <tr>
-          <th class = "font-weight-normal pr-5">レビュー</th>
-          <td><%= @review.review %></td>
-        </tr>
+          <th class = "font-weight-normal pr-5"></th>
+          <td></td>
         <tr>
           <th class = "font-weight-normal pr-5">星評価</th>
           <td>
@@ -76,20 +96,21 @@
     </div>
   </div>
 
-  <div class = "row">
-    <div class = "col-md-11">
-      <%= link_to :back do %>
-        <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
-      <% end %>
+  <div class = "row my-3" >
+    <div class = "col-md-1"></div>
+    <div>
       <% if @review.user == current_user %>
         <%= link_to edit_public_onsen_review_path(@review.onsen, @review.id) do %>
-          <button type="button" class="btn btn-success text-md-block px-4 m-3">編集する</button>
+          <button type="button" class="btn btn-warning rounded-pill px-5">編集する</button>
         <% end %>
+      </div>
+        <div class = "col-md-1"></div>
+        <div>
         <%= link_to public_onsen_review_path(@review.onsen, @review.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-          <button type="button" class="btn btn-danger">削除する</button>
+          <button type="button" class="btn btn-secondary rounded-pill px-5">削除する</button>
         <% end %>
       <% end %>
-    </div>
+</div>
   </div>
 
   <div class = "row">
@@ -98,16 +119,17 @@
       <div>
         <p>コメント件数：<%= @review.post_comments.count %></p>
         <% @review.post_comments.each do |post_comment| %>
-          <p><i class="fas fa-solid fa-user"></i></p>
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <p><i class="fas fa-solid fa-user"></i><%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+          <%= post_comment.comment %>
           <% if post_comment.user == current_user %>
             <%= link_to "削除", public_onsen_review_post_comment_path(@review.onsen, @review.id, post_comment.id), method: :delete %>
           <% end %>
+          </p>
         <% end %>
       </div>
 
-      <div>
+      <div class = "m-3">
         <% if user_signed_in? %>
         <%= form_with model: [@review, @post_comment], url: public_onsen_review_post_comments_path(@review.onsen, @review.id), method: :post do |f| %>
           <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>

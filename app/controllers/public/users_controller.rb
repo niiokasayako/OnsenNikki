@@ -27,6 +27,17 @@ class Public::UsersController < ApplicationController
     sign_out_and_redirect(current_user)
   end
 
+  def review_search
+    @all_reviews = current_user.reviews
+    if params[:address] != ''
+      @reviews = Review.joins(:onsen).where(user_id: current_user.id).where('onsens.address LIKE ?', "%#{params[:address]}%")
+    else
+      @reviews = @all_reviews
+    end
+    @user = current_user
+    render "public/users/show"
+  end
+
   private
 
   def user_params
