@@ -1,47 +1,54 @@
 <div class = "container">
-  <div class = "row">
-    <div class = "col-md-1"></div>
-    <h4 class = "bg-light text-center w-25 my-4  ">新規会員登録</h4>
-    </div>
+  <div class = "row mt-5">
+    <div class = "col-md-3"></div>
     <%= form_with model: @user, url: user_registration_path do |f| %>
-   
-    <%= render "public/shared/error_messages", resource: resource %>
-    <table>
-      <tr>
-        <th class = "pr-5 font-weight-normal">お名前</th>
-        <td>
-         <%= f.text_field :name %>
-        </td>
-      </tr>
-      <tr>
-        <th class = "pr-5 font-weight-normal"><%= f.label :email, "メールアドレス" %></th>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-      </tr>
-    <tr>
-      <th class = "pr-5 font-weight-normal"><%= f.label :password, "パスワード（6文字以上）" %></th>
-      <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-    </tr>
 
-    <tr>
-      <th class = "pr-5 font-weight-normal"><%= f.label :password_confirmation, "パスワード（確認用）" %></th>
-      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><%= f.submit "新規登録", class: "btn btn-success mt-4 w-50" %></td>
-    </tr>
-  </table>
-  <% end %>
+    <%= render "public/shared/error_messages", resource: resource %>
+      <table>
+        <tr>
+          <th class = "pr-5 font-weight-normal">お名前</th>
+          <td>
+           <%= f.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <th class = "pr-5 font-weight-normal"><%= f.label :email, "メールアドレス" %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <th class = "pr-5 font-weight-normal"><%= f.label :password, "パスワード（6文字以上）" %></th>
+          <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        </tr>
+
+        <tr>
+          <th class = "pr-5 font-weight-normal"><%= f.label :password_confirmation, "パスワード（確認用）" %></th>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= f.submit "新規登録", class: "btn btn-warning rounded-pill px-5 mt-4 mb-4" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 
   <div class = "row">
-    <div class = "col-md-1"></div>
-    <h4 class = "bg-light text-center my-4 ">既に登録済みの方</h4>
-  </div>
-  <div class = "row mb-5">
-    <div class = "col-md-2"></div>
-    <a href="/users/sign_in">こちら</a>からログインしてください。
-  </div>
+    <div class = "col-md-3"></div>
+    <div class = "col-md-7 border-top"></div>
+    </div>
+
+    <div class = "row mx-auto">
+      <div class = "col-md-5"></div>
+       <p class = "pt-4 text-center my-1 ">既に登録済みの方</h4>
+    </div>
+
+  <div class = "row mx-auto mb-3">
+      <div class = "col-md-5"></div>
+      <div>
+        <%= link_to new_user_session_path do %>
+          <button type="button" class="btn btn-outline-warning rounded-pill px-5 mt-1 mb-4">ログイン</button>
+        <% end %>
+      </div>
+    </div>
+
 </div>
-
-
-<%= render "public/shared/links" %>

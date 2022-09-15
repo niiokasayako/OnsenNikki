@@ -14,6 +14,12 @@ class Public::OnsensController < ApplicationController
   end
 
   private
+
+
+  def onsen_params
+    params.require(:onsen).permit(:name, :address, :opening_hours, :price, :spring_quality, information_ids: [])
+  end
+
   def keyword_params
     params.permit( :address, informations: [] )
   end

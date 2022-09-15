@@ -9,9 +9,10 @@ class Review < ApplicationRecord
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
 
+# 　reviewをaddressで検索する
   def self.search(search)
-    if search
-     onsen = Onsen.joins(:onsen_informations).where('address like?',"%#{search}%").pluck(:id)
+    if search != ""
+     onsen = Onsen.where('address like?',"%#{search}%").pluck(:id)
      where(id: onsen)
     else
      User.reviews

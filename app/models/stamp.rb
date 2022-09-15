@@ -1,5 +1,5 @@
 class Stamp < ApplicationRecord
-  
-  belongs_to :user, dependent: :destroy
-  belongs_to :onsen, dependent: :destroy
+
+  belongs_to :user
+  belongs_to :onsen
 end

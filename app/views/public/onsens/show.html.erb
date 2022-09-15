@@ -1,49 +1,56 @@
 <div class = "container">
-  <div class ="row">
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
+      <%= link_to public_onsens_path do %>
+        <button type="button" class="btn btn-outline-warning text-md-block px-4 m-3">＜ 戻る</button>
+      <% end %>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-1"></div>
+    <h4 class = "border-bottom w-75 pt-2 my-4 ">温泉詳細<h4>
+  </div>
+
+  <div class ="row-md-11">
     <% if user_signed_in? %>
       <% if @onsen.stamped_by?(current_user) %>
-        <p>
+        <p class = "text-center">
           <%= link_to public_onsen_stamps_path(@onsen.id), method: :delete do %>
-             <button type="button" class="btn btn-warning"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを取り消す</button>
+             <button type="button" class="btn btn-warning rounded-pill"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを取り消す</button>
           <% end %>
         </p>
         <% else %>
-        <p>
+        <p class = "text-center">
           <%= link_to public_onsen_stamps_path(@onsen.id), method: :post do %>
-            <button type="button" class="btn btn-outline-warning"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを押す</button>
+            <button type="button" class="btn btn-outline-warning rounded-pill"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを押す</button>
           <% end %>
         </p>
       <% end %>
     <% end %>
   </div>
 
-  <div class = "row">
-    <div class = "col-md-1"> <%= link_to public_onsens_path do %>
-      <button type="button" class="btn btn-success text-md-block px-4 m-3">戻る</button>
-      <% end %></div>
-      <h4 class = "bg-light text-center px-4 my-4 mb-5 ">基本情報</h4>
-  </div>
-
-  <div class "row" >
-    <table class="col-md-10">
+  <div class = "row" >
+    <div class ="col-md-2"></div>
+    <table class = "col-md-9">
       <tr>
-        <th class = "font-weight-normal pr-5">施設名</th>
+        <th class = "font-weight-normal pr-2">施設名</th>
         <td><%= @onsen.name %></td>
       </tr>
       <tr>
-        <th class = "font-weight-normal align-top pr-5">住所</th>
+        <th class = "font-weight-normal align-top pr-2">住所</th>
         <td><%= @onsen.address %></td>
       </tr>
       <tr>
-        <th class = "font-weight-normal pr-5">営業時間</th>
+        <th class = "font-weight-normal pr-2">営業時間</th>
         <td><%= @onsen.opening_hours %></td>
       </tr>
        <tr>
-        <th class = "font-weight-normal pr-5">料金</th>
+        <th class = "font-weight-normal pr-2">料金</th>
         <td><%= @onsen.price %></td>
       </tr>
        <tr>
-        <th class = "font-weight-normal pr-5">施設情報</th>
+        <th class = "font-weight-normal pr-2">施設情報</th>
         <td>
           <% @onsen.informations.each do |information| %>
             <%= information.name %>
@@ -54,26 +61,22 @@
         <th class = "font-weight-normal pr-5">泉質</th>
         <td><%= @onsen.spring_quality %></td>
       </tr>
-
     </table>
+  </div>
 
-      <div class = "col-md-5 text-md-block text-center">
+  <div class = "row-md-11">
+      <div class = "text-center">
         <% if user_signed_in? %>
         <%= link_to new_public_onsen_review_path(@onsen) do %>
-           <button type="button" class="btn btn-success text-md-block px-4 m-3">投稿する</button>
+           <button type="button" class="btn btn-warning text-md-block px-4 m-3">日記を書く</button>
   　    <% end %>
   　    <% end %>
 　   </div>
-
-     
-
   </div>
-</div>
 
-<div class = "container">
   <div class = "row">
     <div class = "col-md-1"></div>
-    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">日記投稿一覧</h4>
+    <h4 class = "border-bottom w-75 pt-2 my-4 ">日記投稿一覧<h4>
   </div>
 
   <div class = "row d-flex mt-2">
@@ -100,5 +103,4 @@
       </div>
     <% end %>
   </div>
-
 </div>

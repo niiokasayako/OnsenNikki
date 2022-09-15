@@ -1,29 +1,28 @@
 @import '~bootstrap/scss/bootstrap';
 
 header {
-  background-image: url(/app/assets/images/jp_paper_1.jpg);
-  background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
-  background-position: center; /* 背景画像を中央に配置 */
+  width: 100%;
+  background-color: #F0E68C;
 }
 
 .logo {
   width: 150px;
   height: 60px;
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
 }
 
 .main {
-  background-image: url(/app/assets/images/jp_paper_2.jpg);
-  background-size: cover;
   color: #333333;
 }
 
 footer {
   width: 100%;
   height: 60px;
+  background-color: #F0E68C;
   text-align: center;
   line-height: 60px;
 }
 
 .footer-text {
-  color: orange;
+  color: #333333;
 }

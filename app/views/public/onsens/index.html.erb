@@ -1,17 +1,18 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-md-1"></div>
-    <h4 class = "bg-light text-center w-25 pt-2 my-4 ">温泉一覧</h4>
+    <h4 class = "border-bottom w-75 pt-2 my-4 ">♨温泉一覧</h4>
   </div>
 
   <div class = "row">
     <div class = "col-md-1"></div>
-    <div class="search_form">
+    <div class="search_form border rounded p-3 m-3">
+      <p class = "text-center">--- 絞り込み検索 ---</p>
       <%= form_with model: @onsen, url: search_public_onsens_path, local: true, method: :get do |f| %>
-        <%= f.text_field :address, placeholder: "地名検索" %><br>
-        <%= f.label :informations, "絞り込み検索", class:"m-xl-1" %><br>
+        <%= f.text_field :address, placeholder: "地名検索", class: "mb-2" %><br>
+        <%= f.label :informations, "- 施設情報を選ぶ -", class: "mt-3" %><br>
         <%= f.collection_check_boxes :informations, Information.all, :id, :name, include_hidden: false %><br>
-        <%= f.submit "検索", class: "btn btn-primary" %>
+        <p class = "text-center"><%= f.submit "検索", class: "btn btn-warning rounded-pill w-25 mt-3 " %></p>
       <% end %>
     </div>
   </div>
