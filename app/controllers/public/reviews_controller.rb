@@ -18,8 +18,6 @@ class Public::ReviewsController < ApplicationController
     @post_comment = PostComment.new
   end
 
- 
-
   def edit
     @review = Review.find(params[:id])
   end

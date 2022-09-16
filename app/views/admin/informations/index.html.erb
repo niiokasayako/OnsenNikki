@@ -10,14 +10,14 @@
             <b class ="pr-5 ">施設情報カテゴリ名</b>
               <%= f.text_field :name %>
             <a>
-              <%= f.submit "新規登録", class:"btn btn-success px-5 m-3" %>
+              <%= f.submit "新規登録", class:"btn btn-warning px-5 m-3" %>
             </a>
         </div>
     <% end %>
   </div>
 
   <div class = "row">
-    <div class = "col-md-5">
+    <div class = "col-md-10">
       <table class ="table border-bottom ">
         <thead class = "table-active">
           <tr>
@@ -34,7 +34,7 @@
                   </td>
                   <td>
                      <%= link_to edit_admin_information_path(information.id) do %>
-                       <button type="button" class="btn btn-success text-md-block">編集する</button>
+                       <button type="button" class="btn btn-warning text-md-block">編集する</button>
 　                         <% end %>
                    </td>
               </tr>
@@ -43,4 +43,7 @@
       </table>
     </div>
   </div>
+
+  <%= paginate @informations %>
+
 </div>

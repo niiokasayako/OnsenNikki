@@ -10,14 +10,14 @@ class Admin::InformationsController < ApplicationController
       flash[:notice] = "You have created information successfully."
       redirect_to admin_informations_path
     else
-      @informations = Information.all
+      @informations = Information.page(params[:page]).per(10)
       render :index
     end
   end
   
   def index
     @information = Information.new
-    @informations = Information.all
+    @informations = Information.page(params[:page]).per(10)
   end
 
   def edit

@@ -5,14 +5,13 @@
 
     <div class = "col-md-7 text-right">
       <%= link_to new_admin_onsen_path do %>
-        <button type="button" class="btn btn-success text-md-block px-4 my-4">温泉情報 新規登録</button>
+        <button type="button" class="btn btn-warning text-md-block px-4 my-4">温泉情報 新規登録</button>
       <% end %>
     </div>
   </div>
 
-  <div class = "row">
-    <div class = "col-md-1"></div>
-    <table class= "col-md-10 table border-bottom">
+  <div class = "row-md-11">
+    <table class= "mx-auto table border-bottom">
       <thead class = "table-active">
         <tr>
           <th>施設名</th>
@@ -35,8 +34,10 @@
         <% end %>
       </tbody>
     </table>
-
   </div>
+
+<%= paginate @onsens %>
+
 </div>
 
 

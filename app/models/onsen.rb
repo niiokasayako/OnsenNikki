@@ -24,7 +24,7 @@ class Onsen < ApplicationRecord
         if informasion_ids
             Onsen.joins(:onsen_informations).where("onsen_informations.information_id in(?)",informasion_ids).distinct
         else
-            Onsen.all
+            Onsen.page(params[:page]).per(20)
         end
     end
   end
