@@ -59,3 +59,8 @@ gem 'devise'
 gem 'net-smtp'
 gem 'i18n_generators'
 gem 'kaminari','~> 1.2.1'
+
+gem 'dotenv-rails'
+gem "gmaps4rails"
+gem "geocoder"
+gem "gon"

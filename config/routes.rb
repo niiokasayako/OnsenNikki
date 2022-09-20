@@ -29,8 +29,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
         get 'search'
       end
       resource :stamps, only: [:create, :destroy]
-      resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :reviews, only: [:new, :edit, :show, :create, :update, :destroy] do
+        resources :post_comments, only: [:create, :destroy]
+      end
     end
   end
 

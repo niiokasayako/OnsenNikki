@@ -20,3 +20,5 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+//= require underscore
+//= require gmaps/google

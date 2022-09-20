@@ -7,10 +7,11 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/2040c8c54c.js" crossorigin="anonymous"></script>
-
-
+   
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -28,6 +29,11 @@
             <ul class="navbar-nav ml-auto">
            <!--会員がログインした場合-->
               <% if user_signed_in? %>
+                <li class = "ml-md-4">
+                  <%= link_to  public_root_path, class: "btn btn-outline-secondary" do %>
+                  マップ
+                  <% end %>
+                </li>
                 <li class = "ml-md-4">
                   <%= link_to  public_users_my_page_path, class: "btn btn-outline-secondary" do %>
                   マイ日記一覧
@@ -67,6 +73,11 @@
                 </li>
                 <!--ログアウトした場合-->
                 <% else %>
+                <li class = "ml-md-4">
+                  <%= link_to  public_root_path, class: "btn btn-outline-secondary" do %>
+                  マップ
+                  <% end %>
+                </li>
                 <li class = "ml-md-4">
                   <%= link_to public_onsens_path, class: "btn btn-outline-secondary" do %>
                   温泉一覧
