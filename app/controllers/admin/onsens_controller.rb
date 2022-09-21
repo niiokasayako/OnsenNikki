@@ -1,5 +1,5 @@
 class Admin::OnsensController < ApplicationController
-  
+
   GOOGLE_API_KEY = ENV["API_KEY"]
   def new
    @onsen = Onsen.new
@@ -28,11 +28,12 @@ class Admin::OnsensController < ApplicationController
     @onsen.update(onsen_params)
     redirect_to admin_onsen_path(@onsen)
   end
-
+  
+  #温泉データのストロングパラメータ
   private
 
   def onsen_params
-    params.require(:onsen).permit(:name, :address, :opening_hours, :price, :spring_quality, :latitude, :longitude, information_ids: [])
+    params.require(:onsen).permit(:name, :address, :opening_hours, :price, :spring_quality, information_ids: [])
   end
 
 end

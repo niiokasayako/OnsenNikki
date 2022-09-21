@@ -5,15 +5,15 @@ class Onsen < ApplicationRecord
   has_many :stamps, dependent: :destroy
   has_many :reviews, dependent: :destroy
   
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-  
   validates :name, presence: true
   validates :address, presence: true
   validates :opening_hours, presence: true
   validates :price, presence: true
 
   accepts_nested_attributes_for :onsen_informations, allow_destroy: true
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
 
   def self.search(search,informasion_ids)

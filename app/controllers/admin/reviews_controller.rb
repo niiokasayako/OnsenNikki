@@ -13,6 +13,7 @@ class Admin::ReviewsController < ApplicationController
     redirect_to admin_onsen_review_path(@review.onsen, @review.id)
   end
   
+  # レビューデータのストロングパラメータ
   private
 
   def review_params
