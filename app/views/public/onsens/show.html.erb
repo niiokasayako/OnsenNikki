@@ -21,7 +21,8 @@
           <% end %>
         </p>
         <% else %>
-        <p class = "text-center">
+        <p class = "text-center text-warning">
+           温泉を利用したらスタンプを押して記録に残そう！</br>
           <%= link_to public_onsen_stamps_path(@onsen.id), method: :post do %>
             <button type="button" class="btn btn-outline-warning rounded-pill"><i class="fa-sharp fa-solid fa-stamp"></i>スタンプを押す</button>
           <% end %>

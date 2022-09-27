@@ -15,7 +15,6 @@ class Onsen < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-
   def self.search(search,informasion_ids)
     if search != ""
         if informasion_ids
