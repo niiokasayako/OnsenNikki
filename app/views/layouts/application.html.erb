@@ -30,7 +30,7 @@
            <!--会員がログインした場合-->
               <% if user_signed_in? %>
                 <li class = "ml-md-4">
-                  <%= link_to  public_root_path, class: "btn btn-outline-secondary" do %>
+                  <%= link_to  public_path, class: "btn btn-outline-secondary" do %>
                   マップ
                   <% end %>
                 </li>
@@ -74,7 +74,7 @@
                 <!--ログアウトした場合-->
                 <% else %>
                 <li class = "ml-md-4">
-                  <%= link_to  public_root_path, class: "btn btn-outline-secondary" do %>
+                  <%= link_to  public_path, class: "btn btn-outline-secondary" do %>
                   マップ
                   <% end %>
                 </li>

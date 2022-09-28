@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  root 'homes#top', as: "/"
 
  # 顧客用
 # URL /users/sign_in ...
@@ -15,7 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   namespace :public do
 
-    root to: "homes#top"
+    get '/' => "homes#top", as: "/"
     get 'users/show' => "users#show", as: "users/my_page"
     get 'users/show/review_search' => "users#review_search", as: "users/my_page/search"
     get 'users/edit' => "users#edit", as: "users/information/edit"

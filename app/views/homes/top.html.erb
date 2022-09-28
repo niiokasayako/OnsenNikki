@@ -1,0 +1,97 @@
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-1"></div>
+    <h4 class = "text-center border-bottom w-75 pt-2 my-4 ">青森県にある「日帰り温泉」のマップです。</h4>
+    </div>
+
+     <!--地名入力用のinputを追加 -->
+    <input id="address" placeholder="地名検索" type="textbox">
+
+     <!--buttonをクリックしたらcodeAddressを実行　-->
+    <input type="button" value="検索" onclick="codeAddress()">
+
+    <div id='map'></div>
+    <style>
+    #map{
+        height: 700px;
+        width: 100%;
+    }
+    </style>
+
+    <script>
+
+    let map
+    let geocoder
+    let marker = []; // マーカーを複数表示させたいので、配列化
+    let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+    const onsens = gon.onsens; // コントローラーで定義したインスタンス変数を変数に代入
+
+    function initMap(){
+        // geocoderを初期化
+        geocoder = new google.maps.Geocoder()
+        // mapの初期位置設定
+        map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.82444, lng: 140.74},
+        zoom: 15
+        });
+        // forは繰り返し処理
+        // 変数iを0と定義し、
+        // その後gonで定義したonsens分繰り返し加える処理を行う
+        for (let i = 0; i < onsens.length; i++) {
+        //     // geocoderで addressの経緯緯度取得
+        //     // onsens[i]は変数iの温泉を取得している
+            geocoder.geocode( { 'address': onsens[i].address }, function(results, status) {
+                // statusがOKであれば
+            if (status == 'OK') {
+        // 　　　　// map.setCenterで地図が移動
+                map.setCenter(results[0].geometry.location);
+                marker[i] = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+        //         // 変数iを変数idに代入
+                let id = onsens[i]['id']
+                // infoWindowは吹き出し
+                infoWindow[i] = new google.maps.InfoWindow({
+                // contentで中身を指定
+                // 今回は文字にリンクを貼り付けた形で表示
+                content: `<a href='/public/onsens/${id}'>${onsens[i].name}</a>`
+                });
+                // markerがクリックされた時、
+                marker[i].addListener("click", function(){
+                    // infoWindowを表示
+                    infoWindow[i].open(map, marker[i]);
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+            });
+        }
+    }
+
+    function codeAddress(){
+        // 入力を取得
+        let inputAddress = document.getElementById('address').value;
+        // geocodingしたあとmapを移動
+         geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+    　　　　　　　　　　　　// map.setCenterで地図が移動
+          map.setCenter(results[0].geometry.location);
+
+    　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+    </script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+
+</div>
