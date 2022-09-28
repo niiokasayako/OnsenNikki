@@ -60,14 +60,16 @@ gem 'net-smtp'
 gem 'i18n_generators'
 gem 'kaminari','~> 1.2.1'
 
+
+gem 'dotenv-rails'
+gem "gmaps4rails"
+gem "geocoder"
+gem "gon"
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-
-gem "gmaps4rails"
-gem "geocoder"
-gem "gon"
 
 gem "net-smtp"
 gem "net-pop"
