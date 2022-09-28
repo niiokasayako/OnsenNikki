@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2022_09_20_053504) do
     t.string "spring_quality"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "longitude"
     t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "post_comments", force: :cascade do |t|
