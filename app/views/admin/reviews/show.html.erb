@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <th class = "font-weight-normal pt-3 pr-5">日記の内容</th>
-        <td><%= @review.review %></td>
+        <td><%= safe_join(@review.review.split("\n"),tag(:br)) %></td>
       </tr>
       <tr>
         <th class = "font-weight-normal pt-3 pr-5">星評価</th>
