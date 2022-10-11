@@ -15,6 +15,11 @@ header {
   color: #333333;
 }
 
+table {
+   display: block;       /* リンクをブロックレベル化して表示 */
+   padding: 0.6em 1em;   /* 内側の余白量を上下に0.6文字分＆左右に1文字分にする */
+}
+
 footer {
   width: 100%;
   height: 60px;

@@ -31,18 +31,14 @@
 
       <tbody>
         <% @onsens.each do |onsen| %>
-          <tr>
-            <td>
-              <%= link_to public_onsen_path(onsen.id) do %>
-                <%= onsen.name %>
-              <% end %>
-            </td>
+          <tr data-href="<%= public_onsen_path(onsen) %>" >
+            <td><%= onsen.name %></td>
             <td><%= onsen.address %></td>
             <td><%= onsen.opening_hours %></td>
             <td>
               <% onsen.informations.each do |information| %>
-            <%= information.name %>
-          <% end %></td>
+                <%= information.name %>
+              <% end %></td>
           </tr>
         <% end %>
       </tbody>
@@ -52,3 +48,8 @@
 </div>
 
 
+<script>
+  $('tr[data-href]').click(function () {
+        window.location = $(this).data('href')
+  });
+</script>
