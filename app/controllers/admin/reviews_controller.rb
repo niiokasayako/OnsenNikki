@@ -1,4 +1,6 @@
 class Admin::ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
      @review = Review.find(params[:id])
   end
@@ -6,13 +8,13 @@ class Admin::ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
   end
-  
+
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
     redirect_to admin_onsen_review_path(@review.onsen, @review.id)
   end
-  
+
   # レビューデータのストロングパラメータ
   private
 
@@ -21,4 +23,4 @@ class Admin::ReviewsController < ApplicationController
   end
 
 end
-  
+

@@ -1,4 +1,5 @@
 class Admin::InformationsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @information = Information.new
