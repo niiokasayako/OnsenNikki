@@ -103,14 +103,14 @@
         <%= link_to edit_public_onsen_review_path(@review.onsen, @review.id) do %>
           <button type="button" class="btn btn-warning rounded-pill px-5">編集する</button>
         <% end %>
-      </div>
-        <div class = "col-md-1"></div>
-        <div>
-        <%= link_to public_onsen_review_path(@review.onsen, @review.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-          <button type="button" class="btn btn-secondary rounded-pill px-5">削除する</button>
-        <% end %>
+    </div>
+    <div class = "col-md-1"></div>
+    <div>
+      <%= link_to public_onsen_review_path(@review.onsen, @review.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+        <button type="button" class="btn btn-secondary rounded-pill px-5">削除する</button>
       <% end %>
-</div>
+      <% end %>
+    </div>
   </div>
 
   <div class = "row">

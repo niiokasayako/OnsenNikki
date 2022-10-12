@@ -29,7 +29,13 @@ class Admin::OnsensController < ApplicationController
     @onsen.update(onsen_params)
     redirect_to admin_onsen_path(@onsen)
   end
-  
+
+  def destroy
+    @onsen = Onsen.find(params[:id])
+    @onsen.destroy
+    redirect_to admin_path
+  end
+
   #温泉データのストロングパラメータ
   private
 
