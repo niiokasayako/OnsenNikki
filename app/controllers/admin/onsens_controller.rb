@@ -1,5 +1,5 @@
 class Admin::OnsensController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   GOOGLE_API_KEY = ENV["API_KEY"]
   def new

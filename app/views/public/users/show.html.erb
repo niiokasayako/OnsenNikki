@@ -43,10 +43,10 @@
 
       <tbody>
   <% @reviews.each do |review| %>
-          <tr>
+          <tr data-href="<%= public_onsen_review_path(review.onsen, review.id) %>" >
             <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= link_to public_onsen_review_path(review.onsen, review.id)  do %>
-            <%= review.onsen.name %><% end %>
+            <td>
+            <%= review.onsen.name %>
             </td>
             <td><%= review.onsen.address %></td>
             <td><%= review.onsen.opening_hours %></td>
@@ -71,3 +71,9 @@
     </table>
   </div>
 </div>
+
+<script>
+  $('tr[data-href]').click(function () {
+        window.location = $(this).data('href')
+  });
+</script>
