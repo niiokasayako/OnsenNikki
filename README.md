@@ -20,7 +20,7 @@
 実装機能リスト https://docs.google.com/spreadsheets/d/1N0oA_ftLmSNcy-muiXV2I3gG5hXL3Xo-dzWNlqeB3lE/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux 2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
